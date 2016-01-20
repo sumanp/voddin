@@ -14,9 +14,10 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/bundler
 #   https://github.com/capistrano/rails
 #   https://github.com/capistrano/passenger
+
 require 'capistrano/rbenv'
 set :rbenv_type, :user
-set :rbenv_ruby, '2.2.4p230'
+set :rbenv_ruby, '2.2.4'
 
 require 'capistrano/bundler'
 require 'capistrano/rails'

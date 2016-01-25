@@ -23,13 +23,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
 group :development do
 	gem 'capistrano', '~> 3.4'
 	gem 'capistrano-rails', '~> 1.1', '>= 1.1.6'

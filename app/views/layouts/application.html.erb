@@ -27,7 +27,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">Vodd.in</a>
+	      <a class="navbar-brand" href="/">VODD.in</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,16 +35,32 @@
 	      
 	      
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#">Home</a></li>
-	        <li><a href="#">About</a></li>
-	        <li><a href="#">Services</a></li>
-			<li><button class="btn btn-default" type="submit">Login</button></li>
-	        <li><button class="btn btn-success" type="submit">Free Quote</button></li>
+	      	<% if user_signed_in? %>
+		        
+		        
+				
+		        <li><a href="#"><%= current_user.email%></a></li>
+		        <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
 
 	      </ul>
+
+	      	<% else %>
+	      		<li><a href="#">Home</a></li>
+		        <li><a href="#">About</a></li>
+		        <li><a href="#">Services</a></li>
+				<li><%= link_to "Login", new_user_session_path %></li>
+		        <li><button class="btn btn-success" type="submit">Free Quote</button></li>
+
+	      </ul>
+
+	      	<% end %>
 	    </div><!-- /.navbar-collapse -->
+	    
 	  </div><!-- /.container-fluid -->
 	</nav>
+	
+    <p class="alert"><%= alert %></p>
+
 <%= yield %>
 
 </div>

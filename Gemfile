@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 
+gem 'devise', '~> 3.5', '>= 3.5.3'
+
 group :development do
 	gem 'capistrano', '~> 3.4'
 	gem 'capistrano-rails', '~> 1.1', '>= 1.1.6'

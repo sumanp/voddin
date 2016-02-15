@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :tasks
+  resources :tasks do
+  	resources :comments, only: [:create, :destroy]
+  end
+
   devise_for :users
   resources :projects do
     resources :notes

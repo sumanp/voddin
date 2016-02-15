@@ -16,3 +16,33 @@
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
 
+<h2>Comments</h2>
+<ol>
+<% @task.comments.each do |comment|%>
+
+	<li>
+		<h4><%= comment.name %> </h4>
+		<p><%= comment.body %></p>
+		<%= link_to 'Destroy',[@task, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+	</li>
+<% end %>
+</ol>
+
+<h2>Add Comment</h2>
+<%= form_for([ @task, @task.comments.build]) do |f| %>
+	<p>
+		<%=  f.text_field :name, placeholder: "Name" %>
+	</p>
+	<p>
+		<%=  f.email_field :email, placeholder: "email" %>
+	</p>
+
+	<p>
+		<%=  f.text_field :body, rows: 4, col: 10 %>
+	</p>
+
+	<p>
+		<%=  f.submit("Add Comment") %>
+	</p>
+
+<% end %>

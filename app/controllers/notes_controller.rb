@@ -1,9 +1,22 @@
 class NotesController < ApplicationController
 	before_action :set_project
+
+	def index
+		@notes = Note.all
+	end
+
+	def new
+		@note = Note.new
+		
+	end
 	
 	def create
 		@note = @project.notes.create(note_params)
-		redirect_to @project
+		if @note.save
+			redirect_to @project, notice: "Note added"
+		else
+			redirect_to @project, notice: "Note not added"
+		end
 	end
 
 	def destroy
@@ -23,7 +36,7 @@ class NotesController < ApplicationController
 	end
 
 	def note_params
-		params[:note].permit(:content, :category)
+		params[:note].permit(:content, :attachment)
 	end
 
 end

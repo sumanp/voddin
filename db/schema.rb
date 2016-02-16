@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213131507) do
+ActiveRecord::Schema.define(version: 20160216093856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,11 +27,21 @@ ActiveRecord::Schema.define(version: 20160213131507) do
 
   add_index "comments", ["task_id"], name: "index_comments_on_task_id", using: :btree
 
+  create_table "fileuploaders", force: :cascade do |t|
+    t.string   "attachment"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "fileuploaders", ["project_id"], name: "index_fileuploaders_on_project_id", using: :btree
+
   create_table "notes", force: :cascade do |t|
     t.string   "content"
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "attachment"
   end
 
   add_index "notes", ["project_id"], name: "index_notes_on_project_id", using: :btree
@@ -55,6 +65,13 @@ ActiveRecord::Schema.define(version: 20160213131507) do
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
+
+  create_table "uploadfiles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -80,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160213131507) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "comments", "tasks"
+  add_foreign_key "fileuploaders", "projects"
   add_foreign_key "notes", "projects"
   add_foreign_key "tasks", "projects"
 end

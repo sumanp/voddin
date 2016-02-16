@@ -1,4 +1,12 @@
+
+
+<div class = "well">
+<h4>Add a Note</h4>
 <%= form_for([@project, @project.notes.build]) do |f| %>
-	<%= f.text_field :content, placeholder: "Your note" %>
+	<%= f.text_field :content, placeholder: "Your note" %><br>
+	<%= f.label :attachment %>
+    <%= f.file_field :attachment %>
 	<%= f.submit ("Add Note") %>
 <% end %>
+
+</div>

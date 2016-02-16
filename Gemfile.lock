@@ -68,6 +68,11 @@ GEM
     capistrano-rails (1.1.6)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -194,6 +199,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails (~> 1.1, >= 1.1.6)
   capistrano-rbenv!
+  carrierwave (~> 0.10.0)
   coffee-rails (~> 4.1.0)
   devise (~> 3.5, >= 3.5.3)
   jbuilder (~> 2.0)

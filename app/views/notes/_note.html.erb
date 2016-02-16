@@ -1,2 +1,4 @@
 <p><%= note.content %></p>
+<p>Attachment: <%= link_to "#{note.attachment_identifier}", note.attachment_url %></p>
+
 <%= link_to "Delete", project_note_path(@project, note.id), method: :delete, data: { confirm: "Are you sure?"} %>

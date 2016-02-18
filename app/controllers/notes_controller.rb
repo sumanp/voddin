@@ -37,7 +37,7 @@ class NotesController < ApplicationController
 	end
 
 	def note_params
-		params[:note].permit(:content, :attachment)
+		params[:note].permit(:content, {attachments: []})
 	end
 
 end

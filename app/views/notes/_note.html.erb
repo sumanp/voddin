@@ -1,9 +1,15 @@
-<p><%= note.content %></p>
-<p>
-  <strong>Attachments:</strong>
-  <% note.attachments.each do |attachment| %>
-    <%= link_to "#{attachment.file.filename}", attachment.url %> |
-  <% end %>
-</p>
+<ul class="collection with-header">
+	<li class="collection-header"><p><%= note.content %></p></li>
+	<li class="collection-item">
+		<div>
+		  <i class="tiny material-icons">ic_attach_file</i>
+		  <% note.attachments.each do |attachment| %>
+		    <%= link_to "#{attachment.file.filename}", attachment.url %> |
+		  <% end %>
 
-<%= link_to "Delete", project_note_path(@project, note.id), method: :delete, data: { confirm: "Are you sure?"} %>
+		  <%= link_to "Delete", project_note_path(@project, note.id), class: "secondary-content", method: :delete, data: { confirm: "Are you sure?"} %>
+
+		  
+		</div>
+	</li>
+</ul>

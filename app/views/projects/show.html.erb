@@ -54,8 +54,10 @@
       <ul>
   </div>
 </div>
+<p>Created: <%= time_ago_in_words(@project.created_at) %>
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', projects_path %> 
+</p>
 
 
 

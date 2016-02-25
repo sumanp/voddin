@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
 	def create
 		@task = Task.find(params[:task_id])
 		@comment = @task.comments.build(comment_params)
+		@comment.name = current_user.name
+		@comment.email = current_user.email
 
 		if @comment.save
 			redirect_to @task, notice: "Comment posted."
@@ -22,7 +24,7 @@ class CommentsController < ApplicationController
 	private
 
 	def comment_params
-		params.require(:comment).permit(:name, :email, :body)	
+		params.require(:comment).permit(:body)	
 	end
 
 end 

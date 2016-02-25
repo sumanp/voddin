@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'materialize-sass'
 gem 'devise', '~> 3.5', '>= 3.5.3'
+gem 'cancan', '~> 1.6', '>= 1.6.10'
 
 group :development do
 	gem 'capistrano', '~> 3.4'

@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    authorize! :show, @project
   end
 
   # GET /projects/new
@@ -20,6 +21,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    authorize! :update, @project
   end
 
   # POST /projects

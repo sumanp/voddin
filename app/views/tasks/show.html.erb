@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 
- <h1>
+ <h5>
  	<%= check_box_tag :task_done,"", @task.done %>
   <%= @task.title %>
-</h1>
+</h5>
 
 
 
@@ -16,11 +16,11 @@
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
 
-<h2>Comments</h2>
+<h5>Comments</h5>
 <ol>
 <% @task.comments.each do |comment|%>
 	<li>
-		<h4><%= comment.name %> </h4>
+		<h5><%= comment.name %> </h5>
 		<p><%= comment.body %></p>
 		<%= time_ago_in_words(comment.created_at) %>
 		<%= link_to 'Destroy',[@task, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -28,7 +28,7 @@
 <% end %>
 </ol>
 
-<h2>Add Comment</h2>
+<h5>Add Comment</h5>
 <%= form_for([ @task, @task.comments.build]) do |f| %>
 	
 	

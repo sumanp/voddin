@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   	resources :comments, only: [:create, :destroy]
   end
 
-  devise_for :users
+  
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
   resources :projects do
     resources :notes
   end

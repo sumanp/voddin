@@ -4,8 +4,10 @@
 <table class="striped">
   <thead>
     <tr>
+      <th data-field="id">Project ID</th>
       <th data-field="title">Title</th>
       <th data-field="name">User</th>
+      <th> </th>
       
     </tr>
   </thead>
@@ -15,6 +17,7 @@
     <% @projects.each do |project| %>
       <tr> 
       <% if can? :show, project %>
+        <td>V<%= project.id %></td>
         <td><%= project.title %></td>
         <td><%= project.user.name %></td>
       

@@ -9,19 +9,20 @@
 
 
   <div id="info" class="col s12">
-
+<!--
       <% if !flash[:notice].blank? %>
          <div class = "alert alert-info">
             <%= flash[:notice] %>
          </div>
       <% end %>
+    -->
       <h5>
         <%= @project.title %>
       </h5>
 
       <p>
         Description:
-        <%= @project.description %>
+        <%= @project.description.html_safe %>
       </p>
       <p>
         Start Date:
@@ -67,6 +68,7 @@
 <div id="notes_wrapper">
   <%= render @project.notes %>
   <div id="form">
+
     <%= render "notes/form" %>
   </div>
 </div>

@@ -1,7 +1,6 @@
 <%= tinymce_assets %>
 <%= tinymce %>
-<div class="row card-panel">
-	<div class = "col s12">
+
 		<h5>Add a Note</h5>
 		<div class="input-field col s12">
 			<%= form_for([@project, @project.notes.build]) do |f| %>
@@ -9,10 +8,8 @@
 
 				<%= f.text_area :content, id: "n", class: "materialize-textarea tinymce", rows: 4, col: 10 %><br>
 				
-			  <%= f.file_field :attachments, multiple: true, class: "" %>
+			  <%= f.file_field :attachments, multiple: true %><br>
 				<%= f.submit ("Add Note"), class: "btn waves-effect waves-light"%>
 			<% end %>
 		</div>
 
-	</div>
-</div>

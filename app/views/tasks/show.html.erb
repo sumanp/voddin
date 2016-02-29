@@ -1,43 +1,59 @@
-<p id="notice"><%= notice %></p>
+
+ <div class="col s12 z-depth-1 card-panel">
+<br>
+	 <h5>
+	 	<%= check_box_tag :task_done,"", @task.done %>
+	  <%= @task.title %>
+	</h5>
 
 
- <h5>
- 	<%= check_box_tag :task_done,"", @task.done %>
-  <%= @task.title %>
-</h5>
-
-
-
-<p>
-  <strong>Project:</strong>
-  <%= link_to @task.project.title, @task.project %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
-
-<h5>Comments</h5>
-<ol>
-<% @task.comments.each do |comment|%>
-	<li>
-		<h5><%= comment.name %> </h5>
-		<p><%= comment.body %></p>
-		<%= time_ago_in_words(comment.created_at) %>
-		<%= link_to 'Destroy',[@task, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-	</li>
-<% end %>
-</ol>
-
-<h5>Add Comment</h5>
-<%= form_for([ @task, @task.comments.build]) do |f| %>
-	
-	
-	<p>
-		<%=  f.text_field :body, rows: 4, col: 10 %>
-	</p>
 
 	<p>
-		<%=  f.submit("Add Comment") %>
+	  <strong>Project:</strong>
+	  <%= link_to @task.project.title, @task.project %>
 	</p>
 
-<% end %>
+	<p class="right-align">
+	<%= link_to 'Back', tasks_path %>
+	</p>
+
+</div>
+
+<% if @task.comments.count != 0 %>
+	<div class="col s12 z-depth-1 card-panel"><br>	
+		<h5>Comments</h5>
+		
+		<% @task.comments.each do |comment|%>
+		<ul class="collection with-header">
+			<li class="collection-header">
+				
+				<p><%= comment.body %></p>
+			</li>
+			<li class="collection-item">
+				By <%= comment.name %> |
+				<%= time_ago_in_words(comment.created_at) %> ago
+				<%= link_to 'Destroy',[@task, comment], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
+			</li>
+		<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+<div class="col s12 z-depth-1 card-panel">
+
+
+	<h5>Add Comment</h5>
+	<%= form_for([ @task, @task.comments.build]) do |f| %>
+		
+		<div class="input-field col s12">
+            <i class="material-icons prefix">chat_bubble_outline</i>
+            <%= f.label :Type_Your_Comment %><br>
+			<%= f.text_field :body, rows: 4, col: 10 %>
+          </div>
+
+		<p>
+			<%=  f.submit class:"btn"%>
+		</p><br>
+
+	<% end %>
+</div>

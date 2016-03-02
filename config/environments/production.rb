@@ -42,6 +42,6 @@ Rails.application.configure do
 
   
 
-  config.action_mailer.default_url_options = { host: 'vodd.in', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'vodd.in', port: 80 }
 
 end

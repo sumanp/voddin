@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
 		@comment.email = current_user.email
 
 		if @comment.save
+			CommentMailer.comment_created(@task.project, @comment).deliver_now
 			redirect_to @task, notice: "Comment posted."
 		else
 			redirect_to @task, notice: "Comment bot posted."

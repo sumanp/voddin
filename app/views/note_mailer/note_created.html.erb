@@ -1,0 +1,3 @@
+<p>Hi, <%= @note.project.user.name %></p>
+<p><%= @current_user.name %> has added a note on your project</p>
+<blockquote><%= @note.content.html_safe %></blockquote>

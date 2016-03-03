@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    authorize! :index, Task
     @tasks = Task.all
   end
 

@@ -22,6 +22,7 @@ class NotesController < ApplicationController
 	end
 
 	def destroy
+		authorize! :destroy
 		@note = @project.notes.find(params[:id])
 		if @note.destroy
 			flash[:success] = "Your note was deleted"

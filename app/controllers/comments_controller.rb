@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
+		authorize! :destroy
 		@task = Task.find(params[:task_id])
 		@comment =  Comment.find(params[:id])
 		@comment.destroy

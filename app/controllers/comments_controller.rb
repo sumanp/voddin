@@ -15,9 +15,10 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		authorize! :destroy
+
 		@task = Task.find(params[:task_id])
 		@comment =  Comment.find(params[:id])
+		authorize! :destroy, @comment
 		@comment.destroy
 
 		redirect_to @task, notice: "Comment Deleted"

@@ -240,6 +240,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks (~> 2.1)
+  jquery-ui-rails
   materialize-sass
   pg (~> 0.18.4)
   rails (= 4.2.5)

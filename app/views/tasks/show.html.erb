@@ -1,9 +1,15 @@
 
- <div class="col s12 z-depth-1 card-panel">
-<br>
+<div class="col s12 z-depth-1 card-panel">
+	<br>
 	 <h5>
-	 	<%= check_box_tag :task_done,"", @task.done %>
-	  <%= @task.title %>
+	 <%= check_box_tag "task_done_#{@task.id}","", @task.done, class: "task_done filled-in", data: { id: @task.id} %>
+	 <%= label_tag "task_done_#{@task.id}", "" %>
+	 <% if @task.done == true %>
+<strike><%= @task.title %></strike>
+	 <% else %>
+	 	<%= @task.title %>
+	 <% end %>
+
 	</h5>
 
 
@@ -16,7 +22,6 @@
 	<p class="right-align">
 	<%= link_to 'Back', tasks_path %>
 	</p>
-
 </div>
 
 <% if @task.comments.count != 0 %>
@@ -31,11 +36,12 @@
 			</li>
 			<li class="collection-item">
 				By <%= comment.name %> |
-				<%= time_ago_in_words(comment.created_at) %> ago
+				<%= comment.created_at %> 
 				<%= link_to 'Destroy',[@task, comment], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
 			</li>
-		<% end %>
 		</ul>
+		<% end %>
+		
 	</div>
 	<% end %>
 

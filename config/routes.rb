@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :tasks do
   	resources :comments, only: [:create, :destroy]
+    member do
+      patch :toggle
+    end
   end
 
   

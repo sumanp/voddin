@@ -24,7 +24,7 @@
             <td>V<%= project.id %></td>
             <td><%= link_to "#{project.title}", project %></td>
             <% if current_user.admin? %>
-              <td><%= project.user.name %></td>
+              <td><%= project.user_id %></td>
             <% else %>
 
             <% end %>

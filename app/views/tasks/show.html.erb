@@ -37,7 +37,7 @@
 			<li class="collection-item">
 				By <%= comment.name %> |
 				<%= comment.created_at %>
-				<% if current_user == comment.name %> 
+				<% if current_user.name == comment.name %> 
 				<%= link_to 'Destroy',[@task, comment], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
 				<% end %>
 			</li>

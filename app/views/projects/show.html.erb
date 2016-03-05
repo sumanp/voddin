@@ -4,20 +4,17 @@
     
       <br>
       <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#info">Info</a></li>
-        <li class="tab col s3"><a href="#tasks">Tasks</a></li>
-        <li class="tab col s3"><a href="#attachments">Notes</a></li>
+        <li class="tab col s3"><a class="active" href="#info">Project</a></li>
+        <li class="tab col s3"><a href="#attachments">Communication</a></li>
+        <li class="tab col s3"><a href="#tasks">Activities</a></li>
+        
       </ul>
     
 
 
     <div id="info" class="col s12">
 
-        <% if !flash[:notice].blank? %>
-           <div class = "alert alert-info">
-              <%= flash[:notice] %>
-           </div>
-        <% end %>
+        
       
         <h5>
           V<%= @project.id %> | <%= @project.title %>
@@ -56,7 +53,7 @@
             <%= check_box_tag "task_done_#{task.id}","", task.done, class: "task_done filled-in", disabled: "disabled" %>
             <%= label_tag "task_done_#{task.id}", "" %>
             <% if task.done == true %>
-       <strike><%= link_to task.title, task %></strike>
+              <%= link_to task.title, task %>
             <% else %>
               <%= link_to task.title, task %>
             <% end %>

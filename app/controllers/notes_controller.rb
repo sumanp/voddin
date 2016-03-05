@@ -13,6 +13,7 @@ class NotesController < ApplicationController
 	
 	def create
 		@note = @project.notes.create(note_params)
+		@note.user = current_user.name
 		if @note.save
 			NoteMailer.note_created(@note, current_user).deliver_now
 			redirect_to @project, notice: "Note added"

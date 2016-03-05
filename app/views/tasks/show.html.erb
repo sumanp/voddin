@@ -5,7 +5,7 @@
 	 <%= check_box_tag "task_done_#{@task.id}","", @task.done, class: "task_done filled-in", data: { id: @task.id} %>
 	 <%= label_tag "task_done_#{@task.id}", "" %>
 	 <% if @task.done == true %>
-<strike><%= @task.title %></strike>
+		<%= @task.title %>
 	 <% else %>
 	 	<%= @task.title %>
 	 <% end %>

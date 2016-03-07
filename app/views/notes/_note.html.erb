@@ -1,16 +1,20 @@
+<blockquote>
 <ul class="collection with-header">
-	<li class="collection-header"><p><%= note.content.html_safe %></p></li>
+	
+	<li class="collection-header"><%= note.content.html_safe %></li>
 	<li class="collection-item">
 		<div>
 		  <i class="tiny material-icons">ic_attach_file</i>
 		  <% note.attachments.each do |attachment| %>
 		    <%= link_to "#{attachment.file.filename}", attachment.url %> |
 		  <% end %>
-		 	By: <%= note.user %> | Created at: <%= note.created_at %>
+		 	By: <%= note.user %>  <i class="tiny material-icons tiny">schedule</i> <%= note.created_at.strftime("%d %b, %y at %H:%M") %>
 
 		  <%= link_to "Delete", project_note_path(@project, note.id), class: "secondary-content", method: :delete, data: { confirm: "Are you sure?"} %> 
 
 		  
 		</div>
 	</li>
+	
 </ul>
+</blockquote>

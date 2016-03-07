@@ -1,8 +1,8 @@
 
 <%= tinymce %>
-		
-		<div class="col s12">
-			<h5>Add a Note</h5>
+					<br><br>
+		<div class="row col s12 grey lighten-4">
+			<strong><p>New Message</p></strong>
 			<%= form_for([@project, @project.notes.build]) do |f| %>
 				
 
@@ -10,7 +10,7 @@
 				
 			  	<%= f.file_field :attachments, multiple: true %>
 			  <br>
-				<%= f.submit ("Add Note"), class: "btn waves-effect waves-light"%>
+				<%= f.submit ("Submit message"), class: "btn waves-effect waves-light"%>
 			<% end %>
 		</div>
 

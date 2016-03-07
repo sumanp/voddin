@@ -1,32 +1,51 @@
 
-<div class="col s12 z-depth-1 card-panel">
-	<br>
-	 <h5>
-	 <%= check_box_tag "task_done_#{@task.id}","", @task.done, class: "task_done filled-in", data: { id: @task.id} %>
-	 <%= label_tag "task_done_#{@task.id}", "" %>
-	 <% if @task.done == true %>
-		<%= @task.title %>
-	 <% else %>
-	 	<%= @task.title %>
-	 <% end %>
+<div class="col s12 z-depth-1 card-panel grey lighten-4" >
+	<br><br>
+	
+		 <h5>
+		 <%= check_box_tag "task_done_#{@task.id}","", @task.done, class: "task_done filled-in", data: { id: @task.id} %>
+		 <%= label_tag "task_done_#{@task.id}", "" %>
+		 <% if @task.done == true %>
+			<%= @task.title %>
+		 <% else %>
+		 	<%= @task.title %>
+		 <% end %>
 
-	</h5>
+		</h5>
 
 
 
-	<p>
-	  <strong>Project:</strong>
-	  <%= link_to @task.project.title, @task.project %>
-	</p>
+		<p>
+		  <strong>Project:</strong>
+		  <%= link_to @task.project.title, @task.project %>
+		</p>
 
-	<p class="right-align">
-	<%= link_to 'Back', tasks_path %>
-	</p>
+		<p>
+			<strong>Final Submission:</strong></p>
+			<% submission = @task.comments.first %>
+
+			<ul class="collection with-header">
+			<li class="collection-header">
+				
+				<p><%= submission.body %></p>
+			</li>
+			<li class="collection-item">
+				By <%= submission.name %> |
+				<%= submission.created_at.strftime("%d %b, %y at %H:%M") %>
+				<% if current_user.name == submission.name %> 
+				<%= link_to 'Delete',[@task, submission], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
+				<% end %>
+			</li>
+		</ul>
+			
+		
+		
+	
 </div>
 
 <% if @task.comments.count != 0 %>
 	<div class="col s12 z-depth-1 card-panel"><br>	
-		<h5>Comments</h5>
+		<p><strong>Previous Submissions:</strong></p>
 		
 		<% @task.comments.each do |comment|%>
 		<ul class="collection with-header">
@@ -36,9 +55,9 @@
 			</li>
 			<li class="collection-item">
 				By <%= comment.name %> |
-				<%= comment.created_at %>
+				<%= comment.created_at.strftime("%d %b, %y at %H:%M") %>
 				<% if current_user.name == comment.name %> 
-				<%= link_to 'Destroy',[@task, comment], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
+				<%= link_to 'Delete',[@task, comment], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
 				<% end %>
 			</li>
 		</ul>

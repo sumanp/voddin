@@ -5,18 +5,22 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    flash[:notice] = "Your project list"
     @projects = Project.all
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    flash[:notice] = "Your project info, files & communication at one place"
     authorize! :show, @project
   end
 
   # GET /projects/new
   def new
+    flash[:notice] = "Let's work on a new project"
     @project = current_user.projects.build
+
   end
 
   # GET /projects/1/edit
@@ -60,7 +64,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
       format.json { head :no_content }
     end
   end

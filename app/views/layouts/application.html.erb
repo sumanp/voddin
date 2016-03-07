@@ -26,11 +26,11 @@
 
 
         <% if user_signed_in? %>
-          <li><a href="/">Home</a></li>
+          <li class="active"><a href="/">Projects</a></li>
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%= current_user.name %><i class="material-icons right">arrow_drop_down</i></a></li>
           
         <% else %>
-          <li><a href="/">Home</a></li>
+          <li><a href="/">Projects</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Services</a></li>
           <li><%= link_to "Login", new_user_session_path %></li>
@@ -40,11 +40,11 @@
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <% if user_signed_in? %>
-          <li><a href="/">Home</a></li>
+          <li><a href="/">Projects</a></li>
           <li><%= link_to "Edit Profile", edit_user_registration_path %> </li>
           <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>  
         <% else %>
-          <li><a href="/">Home</a></li>
+          <li class="active"><a href="/">Project</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Services</a></li>
           <li><%= link_to "Login", new_user_session_path %></li>
@@ -65,8 +65,14 @@
     
 
       <div class="container ">
-         
-        <p id="notice"><%= notice %></p>
+         <% if !flash[:notice].blank? %>
+           <div class = "alert alert-info">
+              <script type="text/javascript">
+                  Materialize.toast("<%= flash[:notice] %>", 2000);
+              </script>
+           </div>
+        <% end %>
+        
         <%= yield %>
       
       </div>

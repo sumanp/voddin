@@ -18,8 +18,8 @@
         <%= f.text_field :title %>
     </div>
 
-    <div class="input-field col s12">
-      <br><br>
+    <div class="input-field col s12 ">
+      <i class="material-icons prefix">description</i><br> <br>
       <%= f.text_area :description, :class => "tinymce" %>
       <%= f.label :description %>
       <br>
@@ -40,14 +40,15 @@
       <%= f.date_field :end_date, class: "datepicker" %>
       
     </div>
-    <br>
+    
     <div class="input-field col s12">
+      <i class="material-icons prefix">attachment</i>
       <%= f.label :attachments %><br><br>
       <%= f.file_field :attachments, multiple: true %><br><br>
     </div><br>
 
     <div class="actions center-align">
-      <%= f.submit class: "btn" %>
+      <%= f.submit class: "btn", onclick: "Materialize.toast('Almost ready. Please wait :)', 6000)" %>
     </div><br>
   <% end %>
 

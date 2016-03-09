@@ -1,106 +1,121 @@
+<div class="row">
+	<p class="right-align"> <%= link_to 'Back to Project', @task.project, class: "waves-effect waves-teal btn" %> </p>
+	<div class="col s12 z-depth-1 card-panel" >
+		<br>
+		<span class="text-darken-1">
+			<h5 class="center-align card-content ">
+          V<%= @task.project.id %> : <%= @task.project.title %>
+      </h5>
 
-<div class="col s12 z-depth-1 card-panel grey lighten-4" >
-	<br><br>
-	
-		 <h5>
-		 <%= check_box_tag "task_done_#{@task.id}","", @task.done, class: "task_done filled-in", data: { id: @task.id} %>
-		 <%= label_tag "task_done_#{@task.id}", "" %>
-		 <% if @task.done == true %>
-			<%= @task.title %>
-		 <% else %>
-		 	<%= @task.title %>
-		 <% end %>
-
-		</h5>
-
-
-
-		<p>
-		  <strong>Project:</strong>
-		  <%= link_to @task.project.title, @task.project %>
-		</p>
-
-		<p>
-			<strong>Final Submission:</strong></p>
-			<% submission = @task.comments.first %>
-
-			<ul class="collection with-header">
-			<li class="collection-header">
-				
-				<p><%= submission.body %></p>
-			</li>
-			<li class="collection-item">
-				By <%= submission.name %> |
-				<%= submission.created_at.strftime("%d %b, %y at %H:%M") %>
-				<% if current_user.name == submission.name %> 
-				<%= link_to 'Delete',[@task, submission], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
-				<% end %>
-			</li>
-		</ul>
-			
-		
-		
-	
-</div>
-
-<% if @task.comments.count != 0 %>
-	<div class="col s12 z-depth-1 card-panel"><br>	
-		<p><strong>Previous Submissions:</strong></p>
-		
-		<% @task.comments.each do |comment|%>
-		<ul class="collection with-header">
-			<li class="collection-header">
-				
-				<p><%= comment.body %></p>
-			</li>
-			<li class="collection-item">
-				By <%= comment.name %> |
-				<%= comment.created_at.strftime("%d %b, %y at %H:%M") %>
-				<% if current_user.name == comment.name %> 
-				<%= link_to 'Delete',[@task, comment], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
-				<% end %>
-			</li>
-		</ul>
-		<% end %>
-		
-	</div>
-	<% end %>
-
-<div class="col s12 z-depth-1 card-panel">
+      <br>
+      
+			 <h5>
+			 <%= check_box_tag "task_done_#{@task.id}","", @task.done, class: "task_done filled-in", data: { id: @task.id} %>
+			 <%= label_tag "task_done_#{@task.id}", "" %>
+			 
+			A<%= @task.id %> : <%= @task.title %> 
+			</h5>
 
 
-	
-</div>
-
-<!-- Modal Trigger -->
-  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="waves-effect waves-light btn-floating btn-large modal-trigger orange accent-4" href="#modal1">
-      <i class="large material-icons">chat_bubble_outline</i>
-    </a>
-  </div>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h5>Add Comment</h5>
-			<%= form_for([ @task, @task.comments.build]) do |f| %>
-		
-			<div class="input-field col s12">
-        <i class="material-icons prefix">chat_bubble_outline</i>
-        <%= f.label :Type_Your_Comment %><br>
-				<%= f.text_field :body, class: "materialize-textarea" %>
-      </div>
 
 			<p>
-				<%=  f.submit class:"btn"%>
-			</p><br>
+			  <strong>Project:</strong>
+			  <%= link_to @task.project.title, @task.project %>
+			</p>
 
+			<p>
+				<strong>Final Submission:</strong></p>
+				
+
+		
+			<% if @task.comments.count != 0 %>
+				<% submission = @task.comments.last %>
+				<ul class="collection with-header">
+					<li class="collection-header green accent-1">
+						
+						<p><%= submission.body %></p>
+						<i class="tiny material-icons">ic_attach_file</i>
+						  <% submission.attachments.each do |attachment| %>
+						    <%= link_to "#{attachment.file.filename}", attachment.url %> |
+						  <% end %>
+					</li>
+					<li class="collection-item light-green accent-1 ">
+						By <%= submission.name %> |
+						<%= submission.created_at.strftime("%d %b, %y at %H:%M") %>
+						<% if current_user.name == submission.name %> 
+						<%= link_to 'Delete',[@task, submission], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
+						<% end %>
+					</li>
+				</ul>
+			<% else %>
 			<% end %>
-    </div>
+		
+		</span>	
+			
+		
+	</div>
 
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
-  </div>
+	<% if @task.comments.count != 0 %>
+		<div class="col s12 z-depth-1 card-panel"><br>	
+			<p><strong>Submission History:</strong></p>
+			
+			<% @task.comments.each do |comment|%>
+			<ul class="collection with-header">
+				<li class="collection-header green accent-1">
+					
+					<p><%= comment.body %></p>
+					<i class="tiny material-icons">ic_attach_file</i>
+					  <% comment.attachments.each do |attachment| %>
+					    <%= link_to "#{attachment.file.filename}", attachment.url %> |
+					  <% end %>
+				</li>
+				<li class="collection-item light-green accent-1">
+
+					By <%= comment.name %> |
+					<%= comment.created_at.strftime("%d %b, %y at %H:%M") %>
+					<% if current_user.name == comment.name %> 
+					<%= link_to 'Delete',[@task, comment], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
+					<% end %>
+				</li>
+			</ul>
+			<% end %>
+			
+		</div>
+		<% end %>
+
+
+
+	<!-- Modal Trigger -->
+	  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+	    <a class="waves-effect waves-light btn-floating btn-large modal-trigger orange accent-4" href="#modal1">
+	      REPORT
+	    </a>
+	  </div>
+
+	  <!-- Modal Structure -->
+	  <div id="modal1" class="modal">
+	    <div class="modal-content">
+	      <h5>Submit Report</h5>
+				<%= form_for([ @task, @task.comments.build]) do |f| %>
+			
+				<div class="input-field col s12">
+	        <i class="material-icons prefix">chat_bubble_outline</i>
+	        <%= f.label :Type_Your_Comment %><br>
+					<%= f.text_field :body, class: "materialize-textarea" %>
+					<%= f.file_field :attachments, multiple: true %>
+	      </div>
+
+				<p>
+					<%=  f.submit ("Submit Report"), class: "btn"%>
+				</p><br>
+
+				<% end %>
+	    </div>
+	    <div class="modal-footer">
+	      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+	    </div>
+	  </div>
+</div>
+	    
 
 

@@ -1,6 +1,6 @@
 <%= tinymce_assets %>
-<div class="row"><br>
-
+<div class="row">
+   <p class= "right-align"> <a class=" waves-effect waves-teal btn" href="#newmessage">New Message</a> </p>
   <div class="col s12 z-depth-1 card-panel">
     <div class="row blue-grey darken-1">
       <br>
@@ -65,9 +65,10 @@
           <tr>
             <th data-field="id">ID</th>
             <th data-field="title">Activity</th>
-            <th>Reports</th>
             <th data-field="name">Status</th>
-            <th>Last Report</th>
+            <th>Submissions</th>
+            <th>Reports</th>
+            <th>Last Reported at</th>
           </tr>
         </thead>
 
@@ -77,13 +78,21 @@
           <tr> 
             <td>A<%= task.id %></td>
             <td><%= link_to task.title, task %></td>
-            <td><%= task.comments.count %></td>
             <% if task.done %>
               <td><div class="chip green">done</div></td>
             <% else %>
               <td><div class="chip amber lighten-3">pending</div></td>
             <% end %>
-            <td><%= task.created_at.strftime("%d %b, %y at %H:%M") %></td>
+            <td><%= task.comments.count %></td>
+            <td>
+              <% task.comments.each do |sub| %> 
+                <% sub.attachments.each do |attachment| %>
+                  <%= link_to "#{attachment.file.filename}", attachment.url %> |
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= task.updated_at.strftime("%d %b, %y at %H:%M") %></td>
+            <td><a href="<%= task_path(task.id) %>" ><i class="material-icons">pageview</i></a></td>
             
        
           </tr>
@@ -95,7 +104,7 @@
     <div id="attachments" class="col s12">
         
         <p><b>Messages:</b></p>
-          <p class= "right-align"> <a class=" waves-effect waves-light btn-flat" href="#newmessage"><i class="material-icons right">message</i>New Message</a> </p>
+          <p class= "right-align"> <a class=" waves-effect waves-green btn-flat" href="#newmessage"><i class="material-icons right">message</i>New Message</a> </p>
 
         <div id="notes_wrapper">
           <%= render @project.notes %>

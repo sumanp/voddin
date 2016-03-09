@@ -1,6 +1,6 @@
-<%= tinymce_assets %>
+
 <div class="row">
-   <p class= "right-align"> <a class=" waves-effect waves-teal btn" href="#newmessage">New Message</a> </p>
+  <p class="right-align"> <a class=" modal-trigger waves-effect waves-teal btn" href="#newmessage">New Message</a></p>
   <div class="col s12 z-depth-1 card-panel">
     <div class="row blue-grey darken-1">
       <br>
@@ -9,9 +9,9 @@
       </h5>
       <div class="col s12 ">
         <ul class="tabs blue-grey darken-1 white-text">
-          <li class="tab col s3"><a href="#info">Project</a></li>
-          <li class="tab col s3"><a class="active" href="#attachments">Communication</a></li>
-          <li class="tab col s3"><a href="#tasks">Activities</a></li>
+          <li class="tab col s2"><a href="#info">Project</a></li>
+          <li class="tab col s2"><a class="active" href="#attachments">Communication</a></li>
+          <li class="tab col s2"><a href="#tasks">Activities</a></li>
         </ul>
       </div>
     </div>
@@ -103,16 +103,17 @@
     
     <div id="attachments" class="col s12">
         
-        <p><b>Messages:</b></p>
-          <p class= "right-align"> <a class=" waves-effect waves-green btn-flat" href="#newmessage"><i class="material-icons right">message</i>New Message</a> </p>
+        <% if @project.notes.count == 0 %>
+          <p>There seems to be no messages for this project. Please click on <a class="modal-trigger" href="#newmessage">new message</a> to start a chat.<p>
+        <% else %>
+          <p><b>All Messages:</b></p>
+        <% end %>
 
         <div id="notes_wrapper">
           <%= render @project.notes %>
         </div>
 
-        <div id="newmessage">
-          <p><%= render "notes/form" %></p>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -123,11 +124,26 @@
 
     <p class=" col s6 right-align">
       
-      <%= link_to 'Back', projects_path %> 
+      <%= link_to 'Back to Project list', projects_path %> 
      </p>
   </div>
+
+
+<div id="newmessage" class="modal">
+  <div class="modal-content">
+        
+          <%= render "notes/form" %>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+
 </div>
 
+
+
+
+</div>
 
 
 

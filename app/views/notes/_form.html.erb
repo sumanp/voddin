@@ -1,12 +1,16 @@
 
-<%= tinymce %>
-					<br><br>
+
+					
 		<div class="row col s12 grey lighten-4">
-			<strong><p>New Message</p></strong>
+			<strong>New Message</strong>
 			<%= form_for([@project, @project.notes.build]) do |f| %>
 				
-
-				<%= f.text_area :content, id: "n", class: "materialize-textarea tinymce" %><br>
+				<div class="input-field col s12 ">
+			      
+				  <%= f.text_area :content, placeholder: "Type your message", class: "materialize-textarea tinymce" %>
+			      
+			      <br>
+			    </div>
 				
 			  	<%= f.file_field :attachments, multiple: true %>
 			  <br>

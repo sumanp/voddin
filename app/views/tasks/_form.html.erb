@@ -21,9 +21,9 @@
 
   </div>
   <div class="field">
+    <%= f.label "Project:" %> <br>
+    <%= f.collection_select :project_id, Project.all, :id, :project_with_id, { prompt: "Choose a Project" }, class: "browser-default" %>
     
-    <%= f.collection_select :project_id, Project.all, :id, :title %>
-    <%= f.label :project_id, id: 'project_id' %> <br>
   </div><br>
   <div class="actions">
     <%= f.submit class:"btn" %>

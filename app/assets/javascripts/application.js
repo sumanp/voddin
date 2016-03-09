@@ -20,19 +20,19 @@
 //= require turbolinks
 
 
-(function($){
-  $(function(){
 
-    $('.button-collapse').sideNav();
-    $('.modal-trigger').leanModal();
-    $('.tooltipped').tooltip({delay: 50});
-    $('.datepicker').pickadate({
+
+$(document).on('page:fetch', function() {
+  $(".progress").show();
+});
+$(document).on('page:change', function() {
+  $(".progress").hide();
+  $('.button-collapse').sideNav();
+  $('.modal-trigger').leanModal();
+  $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-    
+    selectYears: 15, // Creates a dropdown of 15 years to control year
+    close: 'OK'
   });
-    
-
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+});
 

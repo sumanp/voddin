@@ -1,9 +1,10 @@
 <blockquote>
-<ul class="collection with-header">
+<ul class="collection">
 	
-	<li class="collection-header"><%= note.content.html_safe %></li>
+	
 	<li class="collection-item">
-		<div>
+		
+			<p><%= note.content.html_safe%></p>
 		  <i class="tiny material-icons">ic_attach_file</i>
 		  <% note.attachments.each do |attachment| %>
 		    <%= link_to "#{attachment.file.filename}", attachment.url %> |
@@ -13,7 +14,7 @@
 		  <%= link_to "Delete", project_note_path(@project, note.id), class: "secondary-content", method: :delete, data: { confirm: "Are you sure?"} %> 
 
 		  
-		</div>
+		
 	</li>
 	
 </ul>

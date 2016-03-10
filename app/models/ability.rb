@@ -30,7 +30,7 @@ class Ability
       can :update, Comment do |comment|
         comment.user == user
       end
-      can :destroy, Comment do |comment|
+      can :destroy, Project do |comment|
         comment.user == user
       end
       

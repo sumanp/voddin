@@ -8,9 +8,9 @@ class CommentsController < ApplicationController
 
 		if @comment.save
 			CommentMailer.comment_created(@task.project, @comment).deliver_now
-			redirect_to @task, notice: "Comment posted."
+			redirect_to @task, notice: "Report submitted."
 		else
-			redirect_to @task, notice: "Comment bot posted."
+			redirect_to @task, notice: "Report no submitted."
 		end
 	end
 
@@ -18,10 +18,15 @@ class CommentsController < ApplicationController
 
 		@task = Task.find(params[:task_id])
 		@comment =  Comment.find(params[:id])
-		authorize! :destroy, @comment
+		
+		if @comment.destroy
+			flash[:success] = "Your message is deleted"
+		else
+			flash[:error] = "Your message could not be deleted"
+		end
 		@comment.destroy
 
-		redirect_to @task, notice: "Comment Deleted"
+		redirect_to @task, notice: "Submission Deleted"
 	end
 
 	private

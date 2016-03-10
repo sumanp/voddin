@@ -9,9 +9,9 @@
       </h5>
       <div class="col s12 ">
         <ul class="tabs blue-grey darken-1 white-text">
-          <li class="tab col s2"><a href="#info">Project</a></li>
-          <li class="tab col s2"><a class="active" href="#attachments">Communication</a></li>
-          <li class="tab col s2"><a href="#tasks">Activities</a></li>
+          <li class="tab col s4"><a href="#info">Project</a></li>
+          <li class="tab col s4"><a class="active" href="#attachments">Communication</a></li>
+          <li class="tab col s5"><a href="#tasks">Activities</a></li>
         </ul>
       </div>
     </div>
@@ -58,53 +58,61 @@
           
     </div>
 
-    <div id="tasks" class="col s12">
-      <p><b>On Going Activities:</b></p>
-      <table class="striped">
-        <thead>
-          <tr>
-            <th data-field="id">ID</th>
-            <th data-field="title">Activity</th>
-            <th data-field="name">Status</th>
-            <th>Submissions</th>
-            <th>Reports</th>
-            <th>Last Reported at</th>
-          </tr>
-        </thead>
+    <div class="row">
+      <div id="tasks" class="col s12">
+        <p><b>On Going Activities:</b></p>
+        <% if @project.notes.count == 0 %>
+          <p>Hello again! <br>
+            Please wait for a while, as we asses your project. <br>Also, check this space again to know the status of the key activities associated with your project.
+            <p>
+        <% else %>
+        <table class="striped">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="activity">Activity</th>
+                <th data-field="status">Status</th>
+                <th data-field="sub">Submissions</th>
+                <th data-field="report">Reports</th>
+                <th data-field="reptime">Last Reported at</th>
+                <th data-field="view"></th>
+              </tr>
+            </thead>
 
-        <tbody>
-      
-        <% @project.tasks.each do |task| %>
-          <tr> 
-            <td>A<%= task.id %></td>
-            <td><%= link_to task.title, task %></td>
-            <% if task.done %>
-              <td><div class="chip green">done</div></td>
-            <% else %>
-              <td><div class="chip amber lighten-3">pending</div></td>
-            <% end %>
-            <td><%= task.comments.count %></td>
-            <td>
-              <% task.comments.each do |sub| %> 
-                <% sub.attachments.each do |attachment| %>
-                  <%= link_to "#{attachment.file.filename}", attachment.url %> |
-                <% end %>
+            <tbody>
+          
+              <% @project.tasks.each do |task| %>
+                <tr> 
+                  <td>A<%= task.id %></td>
+                  <td><%= link_to task.title, task %></td>
+                  <% if task.done %>
+                    <td><div class="chip green">done</div></td>
+                  <% else %>
+                    <td><div class="chip amber lighten-3">pending</div></td>
+                  <% end %>
+                  <td><%= task.comments.count %></td>
+                  <td>
+                    <% task.comments.each do |sub| %> 
+                      <% sub.attachments.each do |attachment| %>
+                        <%= link_to "#{attachment.file.filename}", attachment.url %> |
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td><%= task.updated_at.strftime("%d %b, %y at %H:%M") %></td>
+                  <td><a href="<%= task_path(task.id) %>" ><i class="material-icons">pageview</i></a></td>
+                </tr>
               <% end %>
-            </td>
-            <td><%= task.updated_at.strftime("%d %b, %y at %H:%M") %></td>
-            <td><a href="<%= task_path(task.id) %>" ><i class="material-icons">pageview</i></a></td>
-            
-       
-          </tr>
+            </tbody> 
+        </table>
         <% end %>
-      </tbody> 
-    </table>
+        
     </div>
+  </div>
     
     <div id="attachments" class="col s12">
         
         <% if @project.notes.count == 0 %>
-          <p>There seems to be no messages for this project. Please click on <a class="modal-trigger" href="#newmessage">new message</a> to start a chat.<p>
+          <p>This section will contain all the messages & attachments exchanged between us. <br>As of now, there seems to be no messages for this project. <br>Please click on the <a class="modal-trigger" href="#newmessage">new message</a> button to start a chat.<p>
         <% else %>
           <p><b>All Messages:</b></p>
         <% end %>

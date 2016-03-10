@@ -26,7 +26,10 @@
 
 
         <% if user_signed_in? %>
-          <li class="active"><a href="/">Projects</a></li>
+          <li class=""><a href="/">All Project</a></li>
+          <% if current_user.admin? %>
+            <li class=""><a href="<%= tasks_path %>">All Task</a></li>
+          <% end %>
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%= current_user.name %><i class="material-icons right">arrow_drop_down</i></a></li>
           
         <% else %>
@@ -41,6 +44,9 @@
       <ul class="side-nav" id="mobile-demo">
         <% if user_signed_in? %>
           <li><a href="/">Projects</a></li>
+          <% if current_user.admin? %>
+            <li class=""><a href="<%= tasks_path %>">All Task</a></li>
+          <% end %>
           <li><%= link_to "Edit Profile", edit_user_registration_path %> </li>
           <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>  
         <% else %>

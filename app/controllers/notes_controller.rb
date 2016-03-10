@@ -16,9 +16,9 @@ class NotesController < ApplicationController
 		@note.user = current_user.name
 		if @note.save
 			NoteMailer.note_created(@note, current_user).deliver_now
-			redirect_to @project, notice: "Note added"
+			redirect_to @project, notice: "Message sent"
 		else
-			redirect_to @project, notice: "Note not added"
+			redirect_to @project, notice: "Message was not sent"
 		end
 	end
 
@@ -27,9 +27,9 @@ class NotesController < ApplicationController
 		@note = @project.notes.find(params[:id])
 		authorize! :destroy, @note
 		if @note.destroy
-			flash[:success] = "Your note was deleted"
+			flash[:success] = "Your message is deleted"
 		else
-			flash[:error] = "Your note could not be deleted"
+			flash[:error] = "Your message could not be deleted"
 		end
 		redirect_to @project
 	end

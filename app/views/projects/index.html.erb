@@ -2,9 +2,9 @@
    <p class="right-align"> <%= link_to 'New Project', new_project_path, class: "waves-effect waves-light btn" %> </p>
 
   <div class="col s12 z-depth-1 card-panel">
+    
+  <% if @projects.count == 0 %>
     <br>
-    <h5 class="center-align">YOUR PROJECTS</h5>
-
     <table class="striped">
       <thead>
         <tr>
@@ -40,8 +40,9 @@
         <% end %>
       </tbody>
     </table>
-
-    
+  <% else %>
+    <p> Hi <%= current_user.name %>! <br>There seems to be no project associated with your account. <br>Lets change that. Submit a new project by clicking on the <a href="<%= new_project_path %>">new project</a> button.</p>
+  <% end %>
     
     
   </div>

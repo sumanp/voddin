@@ -30,11 +30,13 @@ class Ability
       can :update, Comment do |comment|
         comment.user == user
       end
-      can :destroy, Project do |comment|
+      can :destroy, Comment do |comment|
         comment.user == user
       end
       
-
+      can :show, Task do |task|
+        task.project.user == user
+      end
 
       can :create, Project
       can :create, Note

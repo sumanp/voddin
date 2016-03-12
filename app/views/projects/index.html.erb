@@ -1,9 +1,9 @@
 <div class="row">
-   <p class="right-align"> <%= link_to 'New Project', new_project_path, class: "waves-effect waves-light btn" %> </p>
+   <p class="right-align"> <%= link_to 'New Project', new_project_path, class: "waves-effect waves-light btn orange darken-2" %> </p>
 
   <div class="col s12 z-depth-1 card-panel">
     
-  <% if @projects.count != 0 %>
+  <% if @projects.count == 0 %>
     <br>
     <table class="striped">
       <thead>

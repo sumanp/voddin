@@ -12,6 +12,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    authorize! :show, @task
     @submission = @task.comments.last
   end
 

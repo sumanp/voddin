@@ -118,7 +118,7 @@
         <% end %>
 
         <div id="notes_wrapper">
-          <%= render @project.notes %>
+          <%= render @project.notes.order('id DESC') %>
         </div>
 
         

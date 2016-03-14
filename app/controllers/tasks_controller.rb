@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     authorize! :index, Task
-    @tasks = Task.all
+    @tasks = Task.paginate(:page => params[:page], per_page: 10).order('id DESC')
   end
 
   # GET /tasks/1

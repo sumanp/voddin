@@ -1,4 +1,6 @@
 <br><p class="right-align"> <%= link_to 'New Activity', new_task_path, class: "waves-effect waves-teal btn" %> </p>
+<%= will_paginate @tasks %> 
+
 <div class="col s12 z-depth-1 card-panel"><br>
   <h5 class="center-align">All Activity</h5><br>
 
@@ -33,5 +35,5 @@
 
   <br>
 </div>
-
+<%= will_paginate @tasks %> 
   

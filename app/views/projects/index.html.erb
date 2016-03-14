@@ -1,6 +1,6 @@
 <div class="row"><br>
    <p class="right-align"> <%= link_to 'New Project', new_project_path, class: "waves-effect waves-light btn orange darken-2" %> </p>
-
+    <%= will_paginate @projects %> 
   <div class="col s12 z-depth-1 card-panel"><br>
       <h5 class="center-align">All Projects</h5>
 
@@ -42,12 +42,16 @@
         <% end %>
       </tbody>
     </table>
+
+
+
   <% else %>
     <p> Hi <%= current_user.name %>! <br>There seems to be no project associated with your account. <br>Lets change that. Submit a new project by clicking on the <a href="<%= new_project_path %>">new project</a> button.</p>
   <% end %>
     
     
   </div>
+  <%= will_paginate @projects %>
 </div>
 
 <!-- <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">

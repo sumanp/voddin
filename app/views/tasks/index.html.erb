@@ -1,13 +1,14 @@
 <br><p class="right-align"> <%= link_to 'New Activity', new_task_path, class: "waves-effect waves-teal btn" %> </p>
-<div class="col s12 z-depth-1 card-panel">
-  <h5>All Activity</h5>
+<div class="col s12 z-depth-1 card-panel"><br>
+  <h5 class="center-align">All Activity</h5><br>
 
   <table>
     <thead>
       <tr>
+        <th data-field="id">Activity ID</th>
         <th>Title</th>
-        <th>Done</th>
-        <th>Project Id</th>
+        <th>Status</th>
+        <th>Project ID</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -15,8 +16,13 @@
     <tbody>
       <% @tasks.each do |task| %>
         <tr>
-          <td><%= task.title %></td>
-          <td><%= task.done %></td>
+          <td>A<%= task.id %></td>
+           <td><%= link_to "#{task.title}", task %></td>
+          <% if task.done %>
+            <td><div class="chip green">done</div></td>
+            <% else %>
+            <td><div class="chip amber lighten-3">pending</div></td>
+          <% end %>
           <td><%= link_to "V#{task.project.id}", task.project %></td>
           <td><%= link_to 'Edit', edit_task_path(task) %></td>
           <td><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -32,6 +32,8 @@ p {
 }
 
 .progress {
-	margin: 0.8px;
+	margin: 0.8px 0;
+	width: 100%;
+	z-index: 2;
 	
 }

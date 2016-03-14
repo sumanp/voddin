@@ -10,7 +10,7 @@
       <div class="col s12 ">
         <ul class="tabs blue-grey darken-1 white-text">
           <li class="tab col s4"><a href="#info">Project</a></li>
-          <li class="tab col s4"><a class="active" href="#attachments">Communication</a></li>
+          <li class="tab col s4"><a href="#attachments">Communication</a></li>
           <li class="tab col s5"><a href="#tasks">Activities</a></li>
         </ul>
       </div>
@@ -40,7 +40,7 @@
           <ol>
           <% @project.attachments.each do |attachment| %>
             
-              <li><%= link_to "#{attachment.file.filename}", attachment.url %></li>
+              <li><%= link_to "#{attachment.file.filename}", attachment.url, target: '_blank' %></li>
             
           <% end %>
           </ol>
@@ -63,7 +63,7 @@
         <p><b>On Going Activities:</b></p>
         <% if @project.tasks.count == 0 %>
           <p>Hello again! <br>
-            Please wait for a while, as we asses your project. <br>Also, check this space again to know the status of the key activities associated with your project.
+            Please wait for a while, as we assess your project. <br>Also, check this space again to know the status of the key activities associated with your project.
             <p>
         <% else %>
         <table class="striped">
@@ -112,7 +112,7 @@
     <div id="attachments" class="col s12">
         
         <% if @project.notes.count == 0 %>
-          <p>This section will contain all the messages & attachments exchanged between us. <br>As of now, there seems to be no messages for this project. <br>Please click on the <a class="modal-trigger" href="#newmessage">new message</a> button to start a chat.<p>
+          <p>This section will contain all the messages & attachments exchanged between vodd & user/clients. <br>As of now, there seems to be no messages for this project. <br>Please click on the <a class="modal-trigger" href="#newmessage">new message</a> button to start a chat.<p>
         <% else %>
           <p><b>All Messages:</b></p>
         <% end %>
